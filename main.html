@@ -20,6 +20,8 @@
       }
     </style>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone.js"></script>
@@ -27,11 +29,12 @@
     <script src="card.js"></script>
     <script src="card-view.js"></script>
     <script src="card-collection.js"></script>
+    <script src="icons.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function() {
         var cardCount = 24
-        var symbols = _.sample('ABCDEFJHIJKLMNOPQRSTUVWXYZ'.split(''), cardCount / 2)
+        var symbols = _.sample(window.iconArray, cardCount / 2)
         var cardOrder = _.shuffle(symbols.concat(symbols))
         var cardCollection = new CardCollection();
         for (i = 0; i < cardCount; i++) {

@@ -3,20 +3,20 @@ window.CardView = Backbone.View.extend({
   className: 'Tile',
 
   initialize: function() {
-    this.listenTo(this.model, 'change:isHidden', this.render);
+    this.listenTo(this.model, 'change:state', this.render);
     this.render();
   },
 
   events: {
-    "click" : "reveal",
+    "click" : "flip",
   },
 
-  reveal: function() {
-    this.model.set('isHidden', false);
+  flip: function() {
+    this.model.peek();
   },
 
   render: function() {
-    this.$el.html(this.model.shownSymbol());
+    this.$el.html('<i class="fa ' + this.model.shownSymbol() + '"></i>');
     return this;
   }
 });
