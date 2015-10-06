@@ -3,7 +3,7 @@ window.CardView = Backbone.View.extend({
   className: 'Tile',
 
   initialize: function() {
-    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'change:isHidden', this.render);
     this.render();
   },
 

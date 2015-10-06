@@ -34,9 +34,9 @@
         var cardCollection = new CardCollection();
         for (i = 0; i < cardCount; i++) {
           var card = new Card({ symbol: cardOrder[i] });
+          cardCollection.push(card);
           var cardView = new CardView({ model: card });
           $('#Board').append(cardView.$el);
-          cardCollection.push(card);
         }
       });
 
@@ -45,8 +45,7 @@
   </head>
 
   <body>
-    <div id="Board">
-    </div>
+    <div id="Board"></div>
   </body>
 
 </html>
