@@ -17,6 +17,11 @@ window.CardView = Backbone.View.extend({
 
   render: function() {
     this.$el.html('<i class="fa ' + this.model.shownSymbol() + '"></i>');
+    if (this.model.isVisible()) {
+      this.$el.addClass('flipped');
+    } else {
+      this.$el.removeClass('flipped');
+    }
     return this;
   }
 });
