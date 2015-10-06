@@ -12,7 +12,7 @@ window.CardView = Backbone.View.extend({
   },
 
   reveal: function() {
-    this.model.reveal();
+    this.model.set('isHidden', false);
   },
 
   render: function() {

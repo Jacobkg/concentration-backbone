@@ -2,25 +2,15 @@ window.CardCollection = Backbone.Collection.extend({
   model: Card,
 
   initialize: function() {
-    this.on('change:isHidden', function() {
+    this.on('change:isHidden', function(revealedCard) {
       var revealedModels = this.where({isHidden: false, isCompleted: false});
-      if (revealedModels.length == 2) {
-        this.disableCards();
+
+      if (revealedModels.length > 2) {
+        revealedCard.set('isHidden', true);
+      } else if (revealedModels.length == 2) {
         _.delay(this.revealCards, 1000, this, revealedModels[0], revealedModels[1]);
       }
     });
-  },
-
-  disableCards: function() {
-    this.forEach(function(card) {
-      card.set('isActive', false);
-    })
-  },
-
-  enableCards: function() {
-    this.forEach(function(card) {
-      card.set('isActive', true);
-    })
   },
 
   revealCards: function(collection, card1, card2) {
@@ -31,6 +21,5 @@ window.CardCollection = Backbone.Collection.extend({
       card1.set('isCompleted', true);
       card2.set('isCompleted', true);
     }
-    collection.enableCards();
   }
 });
