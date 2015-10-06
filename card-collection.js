@@ -6,7 +6,7 @@ window.CardCollection = Backbone.Collection.extend({
       var revealedModels = this.where({isHidden: false, isCompleted: false});
       if (revealedModels.length == 2) {
         this.disableCards();
-        _.delay(this.revealCards, 1000, this, revealedModels);
+        _.delay(this.revealCards, 1000, this, revealedModels[0], revealedModels[1]);
       }
     });
   },
@@ -23,15 +23,13 @@ window.CardCollection = Backbone.Collection.extend({
     })
   },
 
-  revealCards: function(collection, cards) {
-    if (cards[0].get('symbol') != cards[1].get('symbol')) {
-      _.each(cards, function(card) {
-        card.set('isHidden', true);
-      });
+  revealCards: function(collection, card1, card2) {
+    if (card1.get('symbol') != card2.get('symbol')) {
+      card1.set('isHidden', true);
+      card2.set('isHidden', true)
     } else {
-      _.each(cards, function(card) {
-        card.set('isCompleted', true);
-      });
+      card1.set('isCompleted', true);
+      card2.set('isCompleted', true);
     }
     collection.enableCards();
   }
