@@ -2,7 +2,7 @@ window.CardCollection = Backbone.Collection.extend({
   model: Card,
 
   initialize: function() {
-    this.on('change:isHidden', function(a,b,c) {
+    this.on('change:isHidden', function() {
       var revealedModels = this.where({isHidden: false, isCompleted: false});
       if (revealedModels.length == 2) {
         this.disableCards();
