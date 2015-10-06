@@ -29,24 +29,16 @@
     <script type="text/javascript">
       $(document).ready(function() {
         var cardCount = 24
-        var symbols = _.sample(['A', 'B', 'C', 'D', 'E', 'F', 'J', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'], cardCount / 2)
+        var symbols = _.sample('ABCDEFJHIJKLMNOPQRSTUVWXYZ'.split(''), cardCount / 2)
         var cardOrder = _.shuffle(symbols.concat(symbols))
         var cardCollection = new CardCollection();
         for (i = 0; i < cardCount; i++) {
-          var card = createCard(cardOrder[i]);
+          var card = new Card({ symbol: cardOrder[i] });
+          var cardView = new CardView({ model: card });
+          $('#Board').append(cardView.$el);
           cardCollection.push(card);
         }
       });
-
-      function createCard(symbol) {
-        var card = new Card({ symbol: symbol });
-        var id = _.uniqueId('Card-')
-        var html = '<div class="Tile" id="' + id + '"></div>'
-        $('#Board').append(html);
-        var cardView = new CardView({ el: $('#' + id), model: card });
-        cardView.render();
-        return card;
-      }
 
     </script>
 
