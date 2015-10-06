@@ -1,0 +1,21 @@
+#Board {
+  width: 900px;
+  margin: 20px auto 20px auto;
+}
+
+.Tile {
+  border: solid 3px ;
+  border-radius: 5px;
+  width: 50px;
+  text-align: center;
+  padding: 40px 20px 40px 20px;
+  float: left;
+  margin: 20px 20px 20px 20px;
+  font-size: 200%;
+  cursor: pointer;
+  background-color: #7ce0f9 ;
+}
+
+.flipped {
+  background-color: white;
+}
