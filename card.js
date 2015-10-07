@@ -1,7 +1,7 @@
 window.Card = Backbone.Model.extend({
 
   initialize: function() {
-    this.set('state', 'covered');
+    this.cover();
   },
 
   peek: function() {
@@ -20,13 +20,6 @@ window.Card = Backbone.Model.extend({
 
   isVisible: function() {
     return (this.get('state') == 'peeked' || this.get('state') == 'solved')
-  },
-
-  shownSymbol: function() {
-    if (this.isVisible()) {
-      return this.get('symbol');
-    } else {
-      return "";
-    }
   }
+
 });

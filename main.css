@@ -16,6 +16,6 @@
   background-color: #7ce0f9 ;
 }
 
-.flipped {
+.Tile.flipped {
   background-color: white;
 }

@@ -12,18 +12,27 @@
     <script src="card-collection.js"></script>
     <script src="icons.js"></script>
 
+    <script id="card-template" type="text/x-underscore-template">
+      <div class="Tile <% isVisible ? print('flipped') : '' %>">
+        <% if (isVisible) { %>
+          <i class="fa <%= symbol %>"></i>
+        <% } else { %>
+          &nbsp
+        <% } %>
+      </div>
+    </script>
+
     <script type="text/javascript">
       $(document).ready(function() {
-        var cardCount = 24
-        var symbols = _.sample(window.iconArray, cardCount / 2)
-        var cardOrder = _.shuffle(symbols.concat(symbols))
+        var symbols = _.sample(window.iconArray, 12)
+        var symbolPairs = _.shuffle(symbols.concat(symbols))
         var cardCollection = new CardCollection();
-        for (i = 0; i < cardCount; i++) {
-          var card = new Card({ symbol: cardOrder[i] });
+        _.each(symbolPairs, function(symbol) {
+          var card = new Card({ symbol: symbol });
           cardCollection.push(card);
           var cardView = new CardView({ model: card });
           $('#Board').append(cardView.$el);
-        }
+        });
       });
     </script>
 

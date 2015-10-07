@@ -1,7 +1,5 @@
 window.CardView = Backbone.View.extend({
 
-  className: 'Tile',
-
   initialize: function() {
     this.listenTo(this.model, 'change:state', this.render);
     this.render();
@@ -16,12 +14,8 @@ window.CardView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html('<i class="fa ' + this.model.shownSymbol() + '"></i>');
-    if (this.model.isVisible()) {
-      this.$el.addClass('flipped');
-    } else {
-      this.$el.removeClass('flipped');
-    }
+    var template = _.template($("#card-template").html());
+    this.$el.html( template({ isVisible: this.model.isVisible(), symbol: this.model.get('symbol') } ));
     return this;
   }
 });
