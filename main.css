@@ -19,3 +19,7 @@
 .Tile.flipped {
   background-color: white;
 }
+
+#Scoreboard .currentPlayer {
+  font-weight: bold;
+}

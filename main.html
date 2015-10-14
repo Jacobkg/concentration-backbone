@@ -10,6 +10,8 @@
     <script src="card.js"></script>
     <script src="card-view.js"></script>
     <script src="card-collection.js"></script>
+    <script src="scoreboard.js"></script>
+    <script src="scoreboard-view.js"></script>
     <script src="icons.js"></script>
 
     <script id="card-template" type="text/x-underscore-template">
@@ -22,11 +24,23 @@
       </div>
     </script>
 
+    <script id="scoreboard-template" type="text/x-underscore-template">
+      <div>
+        <div class="<% currentPlayer == 1 ? print('currentPlayer') : '' %>">Player 1: <%= playerOneScore %></div>
+        <div class="<% currentPlayer == 2 ? print('currentPlayer') : '' %>">Player 2: <%= playerTwoScore %></div>
+      </div>
+    </script>
+
     <script type="text/javascript">
       $(document).ready(function() {
         var symbols = _.sample(window.iconArray, 12)
         var symbolPairs = _.shuffle(symbols.concat(symbols))
-        var cardCollection = new CardCollection();
+
+        var scoreboard = new Scoreboard();
+        var scoreboardView = new ScoreboardView({ model: scoreboard });
+        $('#Scoreboard').append(scoreboardView.$el);
+
+        var cardCollection = new CardCollection({ scoreboard: scoreboard });
         _.each(symbolPairs, function(symbol) {
           var card = new Card({ symbol: symbol });
           cardCollection.push(card);
@@ -39,6 +53,7 @@
   </head>
 
   <body>
+    <div id="Scoreboard"></div>
     <div id="Board"></div>
   </body>
 
